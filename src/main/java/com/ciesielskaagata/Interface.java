@@ -16,6 +16,7 @@ public class Interface {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Cat cat = new Cat();
+        CatDAO catDAO = new CatDAO();
 
         printOut("Hello. Please fill in the cat's name below.");
         cat.setName(scanner.nextLine());
@@ -30,8 +31,7 @@ public class Interface {
             Matcher matcher = weightPattern.matcher(givenWeight);
             if (matcher.matches()) {
                 cat.setWeight(Float.valueOf(givenWeight));
-            }
-            else {
+            } else {
                 System.out.print("Wrong weight format. Please use dot as separator.");
             }
         }
@@ -45,15 +45,15 @@ public class Interface {
             Matcher matcher = birthdayPattern.matcher(givenBirthday);
 
             if (matcher.matches()) {
-            try {
-                cat.setBirthday(formatter.parse(givenBirthday));
+                try {
+                    cat.setBirthday(formatter.parse(givenBirthday));
+                } catch (ParseException e) {
+                    System.out.print("Wrong date format. Please use YYYY-MM-DD format.");
+                }
             }
-            catch (ParseException e) {
-                System.out.print("Wrong date format. Please use YYYY-MM-DD format.");
-            }
-        }}
+        }
         while (cat.getBirthday() == null);
-
+        catDAO.addCat(cat);
         cat.introduce();
     }
 }
