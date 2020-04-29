@@ -14,14 +14,6 @@ public class Cat {
     Float weight;
     String keeperName;
 
-    public String introduce() {
-        System.out.println("Hello. Cat named " + name + " was born on " + this.getFormatedBirthday() + " and right now his/her weight is " +
-                weight + "kg. The keeper is " + keeperName + ".");
-
-        return "Hello. Cat named " + name + " was born on " + this.getFormatedBirthday() + " and right now his/her weight is " +
-                weight + "kg. The keeper is " + keeperName + ".";
-    }
-
     public String getFormatedBirthday() {
         return df.format(this.birthday);
     }
